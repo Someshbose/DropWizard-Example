@@ -4,9 +4,10 @@ import io.dropwizard.Application;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import someshbose.github.io.app.HelloWorldConfiguration;
-import someshbose.github.io.app.HelloWorldResource;
-import someshbose.github.io.app.TemplateHealthCheck;
+import someshbose.github.io.app.config.HelloWorldConfiguration;
+import someshbose.github.io.app.controller.CatResource;
+import someshbose.github.io.app.controller.HelloWorldResource;
+import someshbose.github.io.app.health.TemplateHealthCheck;
 
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
 
@@ -29,11 +30,15 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
   public void run(HelloWorldConfiguration configuration, Environment environment) throws Exception {
     final HelloWorldResource resource =
         new HelloWorldResource(configuration.getTemplate(), configuration.getDefaultName());
-    
-    final TemplateHealthCheck healthCheck=new TemplateHealthCheck(configuration.getTemplate());
-    
+
+    final TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
+
+    final CatResource catResource = new CatResource();
+
     environment.healthChecks().register("template", healthCheck);
     environment.jersey().register(resource);
+    environment.jersey().register(catResource);
+
   }
 
 }

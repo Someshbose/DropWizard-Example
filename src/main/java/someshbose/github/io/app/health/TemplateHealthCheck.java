@@ -1,4 +1,4 @@
-package someshbose.github.io.app;
+package someshbose.github.io.app.health;
 
 import com.codahale.metrics.health.HealthCheck;
 
