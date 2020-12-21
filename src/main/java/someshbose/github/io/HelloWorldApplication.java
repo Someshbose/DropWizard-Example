@@ -4,9 +4,9 @@ import io.dropwizard.Application;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import someshbose.github.io.app.HelloWorldConfiguration;
-import someshbose.github.io.app.HelloWorldResource;
-import someshbose.github.io.app.TemplateHealthCheck;
+import someshbose.github.io.app.config.HelloWorldConfiguration;
+import someshbose.github.io.app.controller.HelloWorldResource;
+import someshbose.github.io.app.health.TemplateHealthCheck;
 
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
 
