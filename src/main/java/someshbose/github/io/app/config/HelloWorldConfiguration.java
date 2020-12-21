@@ -1,4 +1,4 @@
-package someshbose.github.io.app;
+package someshbose.github.io.app.config;
 
 import javax.validation.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonProperty;
