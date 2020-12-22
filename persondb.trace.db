@@ -1,0 +1,3 @@
+2020-12-21 22:26:30 jdbc[10]: exception
+org.h2.jdbc.JdbcSQLException: Table "PERSON" not found; SQL statement:
+/* criteria query */ select this_.ID as ID1_0_0_, this_.NAME as NAME2_0_0_ from PERSON this_ [42102-197]
