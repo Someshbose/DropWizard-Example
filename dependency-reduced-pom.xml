@@ -20,7 +20,7 @@
               <transformers>
                 <transformer />
                 <transformer>
-                  <mainClass>com.example.helloworld.HelloWorldApplication</mainClass>
+                  <mainClass>someshbose.github.io.HelloWorldApplication</mainClass>
                 </transformer>
               </transformers>
             </configuration>
