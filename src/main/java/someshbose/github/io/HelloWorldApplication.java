@@ -4,6 +4,7 @@ import io.dropwizard.Application;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import someshbose.github.io.app.config.ExampleConfiguration;
@@ -55,6 +56,12 @@ public class HelloWorldApplication extends Application<ExampleConfiguration> {
   public void initialize(Bootstrap<ExampleConfiguration> bootstrap) {
     bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());  
     bootstrap.addBundle(hibernate);
+    bootstrap.addBundle(new MigrationsBundle<ExampleConfiguration>() {
+      @Override
+      public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
+          return configuration.getDatabaseAppDataSourceFactory();
+      }
+    });
     /*
     bootstrap.addBundle(new FlywayBundle<ExampleConfiguration>() {
       @Override
