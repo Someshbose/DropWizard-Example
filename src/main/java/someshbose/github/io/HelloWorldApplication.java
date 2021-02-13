@@ -12,6 +12,7 @@ import someshbose.github.io.app.controller.HelloWorldApplicationResource;
 import someshbose.github.io.app.health.HelloWorldApplicationHealthCheck;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.hibernate.HibernateBundle;
+import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import someshbose.github.io.app.config.ExampleConfiguration;
@@ -91,6 +92,12 @@ public void run(HelloWorldConfiguration configuration, Environment environment) 
   public void initialize(Bootstrap<ExampleConfiguration> bootstrap) {
     bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());  
     bootstrap.addBundle(hibernate);
+    bootstrap.addBundle(new MigrationsBundle<ExampleConfiguration>() {
+      @Override
+      public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
+          return configuration.getDatabaseAppDataSourceFactory();
+      }
+    });
     /*
     bootstrap.addBundle(new FlywayBundle<ExampleConfiguration>() {
       @Override
