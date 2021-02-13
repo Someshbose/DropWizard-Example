@@ -61,7 +61,32 @@
   </dependencies>
   <build>
   	 <plugins>
-	  	 <plugin>
+	  	<plugin>
+	  		<groupId>org.apache.maven.plugins</groupId>
+	  		<artifactId>maven-resorces-plugin</artifactId>
+	  		<version>3.0.0</version>
+	  		<executions>
+	  			<execution>
+	  				<id>copy-config-resources</id>
+	  				<goals>
+	  					<goal>copy-resources</goal>
+	  				</goals>
+	  				<phase>process-resources</phase>
+	  				<configuration>
+	  					<outputDirectory>${project.build.directory}/config</outputDirectory>
+	  					<resources>
+	  						<resource>
+	  							<directory>resources</directory>
+	  							<includes>
+	  								<include>*.yml</include>
+	  							</includes>
+	  						</resource>
+	  					</resources>
+	  				</configuration>
+	  			</execution>
+	  		</executions>
+	  	</plugin>
+	  	<plugin>
 		    <groupId>org.flywaydb</groupId>
 		    <artifactId>flyway-maven-plugin</artifactId>
 		    <version>4.0.3</version> 
