@@ -11,7 +11,7 @@ import someshbose.github.io.app.health.TemplateHealthCheck;
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
 
   public static void main(String[] args) throws Exception {
-    new HelloWorldApplication().run("server", "example.yml");
+    new HelloWorldApplication().run(args);
   }
 
   @Override
