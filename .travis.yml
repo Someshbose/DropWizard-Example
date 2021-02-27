@@ -1,0 +1,26 @@
+dist: xenial
+os: linux
+language: java
+cache:
+  directories:
+  - "~/.m2"
+branches:
+  only:
+  - master
+  - development
+install: ''
+before_install:
+- chmod +x mvnw
+jobs:
+  fast_finish: true
+  include:
+  - jdk: openjdk8
+    env:
+    - DESC="build with OPENJDK11"
+    - USE_MAVEN_REPO="true"
+    - CMD="mvn clean package"
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::7}
+script:
+- "./mvnw clean package -B"
