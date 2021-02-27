@@ -2,11 +2,11 @@ package someshbose.github.io.app.health;
 
 import com.codahale.metrics.health.HealthCheck;
 
-public class TemplateHealthCheck extends HealthCheck {
+public class HelloWorldApplicationHealthCheck extends HealthCheck {
 
   private final String template;
 
-  public TemplateHealthCheck(String template) {
+  public HelloWorldApplicationHealthCheck(String template) {
     this.template = template;
   }
 

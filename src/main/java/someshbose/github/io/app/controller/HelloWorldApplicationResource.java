@@ -2,6 +2,7 @@ package someshbose.github.io.app.controller;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
+import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -12,12 +13,14 @@ import someshbose.github.io.model.Saying;
 
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)
-public class HelloWorldResource {
+public class HelloWorldApplicationResource {
+
   private final String template;
   private final String defaultName;
   private final AtomicLong counter;
 
-  public HelloWorldResource(String template, String defaultName) {
+  @Inject
+  public HelloWorldApplicationResource(String template, String defaultName) {
       this.template = template;
       this.defaultName = defaultName;
       this.counter = new AtomicLong();
