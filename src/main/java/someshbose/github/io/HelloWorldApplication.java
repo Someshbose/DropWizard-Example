@@ -11,7 +11,8 @@ import someshbose.github.io.app.health.TemplateHealthCheck;
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
 
   public static void main(String[] args) throws Exception {
-    new HelloWorldApplication().run("server", "example.yml");
+    //new HelloWorldApplication().run("server","example.yml");
+    new HelloWorldApplication().run(args);
   }
 
   @Override
@@ -21,7 +22,7 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
 
   @Override
   public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
-    bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());
+    //bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());
     super.initialize(bootstrap);
   }
 
