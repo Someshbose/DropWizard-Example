@@ -9,8 +9,6 @@ branches:
   - master
   - development
 install: ''
-before_install:
-- chmod +x mvnw
 jobs:
   fast_finish: true
   include:
@@ -23,4 +21,4 @@ env:
   global:
   - COMMIT=${TRAVIS_COMMIT::7}
 script:
-- "./mvnw clean package -B"
+- "mvn clean package -B"
