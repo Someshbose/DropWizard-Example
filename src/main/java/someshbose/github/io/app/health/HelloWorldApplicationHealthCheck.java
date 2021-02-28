@@ -16,7 +16,7 @@ public class HelloWorldApplicationHealthCheck extends HealthCheck {
     final String saying = String.format(template, "TEST");
 
     if (!saying.contains("TEST")) {
-      return Result.unhealthy("Template doesn't include a name");
+      return Result.unhealthy("HelloWorldApplicationHealthCheck doesn't include a name");
     }
     return Result.healthy();
   }

@@ -3,16 +3,19 @@ package someshbose.github.io.app.dao;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import io.dropwizard.hibernate.AbstractDAO;
+import org.hibernate.query.Query;
 import someshbose.github.io.model.Person;
 
-public class PersonDAO extends AbstractDAO<Person> {
+import javax.inject.Inject;
 
-  public PersonDAO(SessionFactory factory) {
+public class PersonDao extends AbstractDAO<Person> {
+  @Inject
+  public PersonDao(SessionFactory factory) {
       super(factory);
   }
 
   public List<Person> getAll() {
-      return (List<Person>) currentSession().createCriteria(Person.class).list();
+      return list((Query<Person>)  namedQuery("someshbose.github.io.model.Person.findAll"));
   }
 
   public Person findById(int id) {

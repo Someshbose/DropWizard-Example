@@ -11,19 +11,22 @@ import someshbose.github.io.app.config.HelloWorldApplicationConfiguration;
 import someshbose.github.io.app.controller.HelloWorldApplicationResource;
 import someshbose.github.io.app.health.HelloWorldApplicationHealthCheck;
 import io.dropwizard.db.DataSourceFactory;
-import io.dropwizard.hibernate.HibernateBundle;
 import io.dropwizard.migrations.MigrationsBundle;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
-import someshbose.github.io.app.config.ExampleConfiguration;
+import io.dropwizard.hibernate.HibernateBundle;
 import someshbose.github.io.app.controller.PersonResource;
-import someshbose.github.io.app.dao.PersonDAO;
 import someshbose.github.io.model.Person;
 
 @Slf4j
 public class HelloWorldApplication extends Application<HelloWorldApplicationConfiguration> {
 
   private static final String SERVICE_NAME = "Hello-World-Application";
+
+  private final HibernateBundle<HelloWorldApplicationConfiguration> hibernate = new HibernateBundle<HelloWorldApplicationConfiguration>(Person.class) {
+    @Override
+    public DataSourceFactory getDataSourceFactory(HelloWorldApplicationConfiguration configuration) {
+      return configuration.getDatabaseAppDataSourceFactory();
+    }
+  };
 
   public static void main(String[] args) throws Exception {
     //new HelloWorldApplication().run("server","local.yml");
@@ -39,6 +42,14 @@ public class HelloWorldApplication extends Application<HelloWorldApplicationConf
   public void initialize(Bootstrap<HelloWorldApplicationConfiguration> bootstrap) {
     log.info("Bootstrapping {}...",SERVICE_NAME);
     //bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());
+    bootstrap.addBundle(hibernate);
+
+    bootstrap.addBundle(new MigrationsBundle<HelloWorldApplicationConfiguration>() {
+      @Override
+      public DataSourceFactory getDataSourceFactory(HelloWorldApplicationConfiguration configuration) {
+        return configuration.getDatabaseAppDataSourceFactory();
+      }
+    });
     super.initialize(bootstrap);
   }
   @Override
@@ -47,83 +58,19 @@ public class HelloWorldApplication extends Application<HelloWorldApplicationConf
     log.info("Initializing {}...",SERVICE_NAME);
 
     log.info("Configuring Guice Injector");
-    Injector injector = Guice.createInjector(new HelloWorldApplicationModule(configuration));
+    Injector injector = Guice.createInjector(new HelloWorldApplicationModule(configuration,hibernate));
     registerResources(injector,environment,configuration);
     registerHealthCheck(environment,configuration);
 
   }
 
   private void registerResources(Injector injector, Environment environment, HelloWorldApplicationConfiguration configuration){
-    //final HelloWorldResource resource =
-      //      new HelloWorldResource(configuration.getTemplate(), configuration.getDefaultName());
     environment.jersey().register(injector.getInstance(HelloWorldApplicationResource.class));
-
+    environment.jersey().register(injector.getInstance(PersonResource.class));
   }
 
   private void registerHealthCheck(Environment environment, HelloWorldApplicationConfiguration configuration){
-    environment.healthChecks().register("template", new HelloWorldApplicationHealthCheck(configuration.getTemplate()));
-
+    environment.healthChecks().register("HelloWorldApplicationHealthCheck", new HelloWorldApplicationHealthCheck(configuration.getTemplate()));
   }
- /*
-public void run(HelloWorldConfiguration configuration, Environment environment) throws Exception {
-    final HelloWorldResource resource =
-            new HelloWorldResource(configuration.getTemplate(), configuration.getDefaultName());
-
-    final TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
-
-    environment.healthChecks().register("template", healthCheck);
-    environment.jersey().register(resource);
-    }
-
-  
-  private final HibernateBundle<ExampleConfiguration> hibernate = new HibernateBundle<ExampleConfiguration>(Person.class) {
-    @Override
-    public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
-        return configuration.getDatabaseAppDataSourceFactory();
-    }
-  };
-
-  @Override
-  public String getName() {
-      return "dropwizard-hibernate";
-  }
-
-  @Override
-  public void initialize(Bootstrap<ExampleConfiguration> bootstrap) {
-    bootstrap.setConfigurationSourceProvider(new ResourceConfigurationSourceProvider());  
-    bootstrap.addBundle(hibernate);
-    bootstrap.addBundle(new MigrationsBundle<ExampleConfiguration>() {
-      @Override
-      public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
-          return configuration.getDatabaseAppDataSourceFactory();
-      }
-    });
-    /*
-    bootstrap.addBundle(new FlywayBundle<ExampleConfiguration>() {
-      @Override
-      public DataSourceFactory getDataSourceFactory(ExampleConfiguration configuration) {
-          return configuration.getDataSourceFactory();
-      }
-      
-      @Override
-      public FlywayFactory getFlywayFactory(ExampleConfiguration configuration) {
-          return configuration.getFlywayFactory();
-      }
-  });
-
-  }
-
-  @Override
-  public void run(ExampleConfiguration configuration, Environment environment) throws ClassNotFoundException {
-
-      final PersonDAO personDAO = new PersonDAO(hibernate.getSessionFactory());
-
-      final PersonResource personResource = new PersonResource(personDAO);
-
-      environment.jersey().register(personResource);
-
-  */
-  }
-  
   
 }

@@ -1,14 +1,16 @@
 package someshbose.github.io.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "PERSON")
+@Table(name = "Person")
+@NamedQueries({
+        @NamedQuery(
+                name = "someshbose.github.io.model.Person.findAll",
+                query= "SELECT p FROM Person p")
+})
 public class Person {
 
     @Id

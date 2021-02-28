@@ -1,2 +1,39 @@
 template: Hello, %s!
 defaultName: Stranger
+
+database:
+  driverClass: org.h2.Driver
+  user: sa
+  password:
+  url: jdbc:h2:mem:testdb
+  validationQuery: "select 1"
+  properties:
+    hibernate.dialect: org.hibernate.dialect.H2Dialect
+
+# database:
+#   driverClass: oracle.jdbc.OracleDriver
+#   user: system
+#   password: oracle
+#   url: jdbc:oracle:thin:@localhost:1521:xe
+#   properties:
+#     charSet: UTF-8
+#   maxWaitForConnection: 1s
+#   validationQuery: "/* MyService Health Check */ select 1 from dual"
+#   minSize: 8
+#   maxSize: 32
+#   checkConnectionWhileIdle: false
+#   evictionInterval: 10s
+#   minIdleTime: 1 minute
+#   properties:
+#     hibernate.dialect: org.hibernate.dialect.Oracle12cDialect
+#     hibernate.show_sql: true
+#     hibernate.generate_statistics: false
+#     hibernate.hbm2ddl.auto: validate # validates schema when service is started
+
+#server:
+#type: simple
+#applicationContextPath: /application
+#adminContextPath: /admin
+#connector:
+#type: http
+#port: 8000
