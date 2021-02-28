@@ -21,4 +21,4 @@ env:
   global:
   - COMMIT=${TRAVIS_COMMIT::7}
 script:
-- "./mvnw clean package -B"
+- "mvn clean package -B"
