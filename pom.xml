@@ -35,7 +35,14 @@
 	    <artifactId>dropwizard-hibernate</artifactId>
 	    <version>${dropwizard.version}</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc8 -->
+	<!--DropWizard Authentication -->
+	<dependency>
+	  <groupId>io.dropwizard</groupId>
+	  <artifactId>dropwizard-auth</artifactId>
+	  <version>${dropwizard.version}</version>
+	</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc8 -->
 <!--	<dependency>-->
 <!--	    <groupId>com.oracle.ojdbc</groupId>-->
 <!--	    <artifactId>ojdbc8</artifactId>-->
