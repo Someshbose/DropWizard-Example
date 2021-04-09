@@ -1,10 +1,10 @@
-package someshbose.github.io.app.dao;
+package someshbose.github.io.domain.dao;
 
 import java.util.List;
 import org.hibernate.SessionFactory;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.query.Query;
-import someshbose.github.io.model.Person;
+import someshbose.github.io.domain.Person;
 
 import javax.inject.Inject;
 

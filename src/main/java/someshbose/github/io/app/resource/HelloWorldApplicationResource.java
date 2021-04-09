@@ -1,4 +1,4 @@
-package someshbose.github.io.app.controller;
+package someshbose.github.io.app.resource;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import com.codahale.metrics.annotation.Timed;
-import someshbose.github.io.model.Saying;
+import someshbose.github.io.domain.Saying;
 
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)

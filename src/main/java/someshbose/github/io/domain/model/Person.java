@@ -1,4 +1,4 @@
-package someshbose.github.io.model;
+package someshbose.github.io.domain.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

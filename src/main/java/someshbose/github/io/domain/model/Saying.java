@@ -1,4 +1,4 @@
-package someshbose.github.io.model;
+package someshbose.github.io.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
