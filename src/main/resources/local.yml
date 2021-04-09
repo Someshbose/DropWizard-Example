@@ -10,6 +10,10 @@ database:
   properties:
     hibernate.dialect: org.hibernate.dialect.H2Dialect
 
+schedulerConfig:
+  initialDelayinMin: 0
+  delayInMin: 2
+
 #database:
 # driverClass: oracle.jdbc.OracleDriver
 # user: system

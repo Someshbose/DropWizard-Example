@@ -27,6 +27,9 @@ public class HelloWorldApplicationConfiguration extends Configuration {
     return database;
   }
 
+  @JsonProperty("schedulerConfig")
+  private SchedulerConfig schedulerConfig;
+
   @JsonProperty
   public String getTemplate() {
     return template;

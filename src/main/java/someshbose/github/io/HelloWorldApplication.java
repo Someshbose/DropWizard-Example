@@ -3,6 +3,7 @@ package someshbose.github.io;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import io.dropwizard.Application;
+import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +15,7 @@ import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.hibernate.HibernateBundle;
 import someshbose.github.io.app.controller.PersonResource;
+import someshbose.github.io.app.service.SchedulerService;
 import someshbose.github.io.model.Person;
 
 @Slf4j
@@ -61,6 +63,8 @@ public class HelloWorldApplication extends Application<HelloWorldApplicationConf
     Injector injector = Guice.createInjector(new HelloWorldApplicationModule(configuration,hibernate));
     registerResources(injector,environment,configuration);
     registerHealthCheck(environment,configuration);
+    //Managed
+    manage(environment,injector, SchedulerService.class);
 
   }
 
@@ -71,6 +75,11 @@ public class HelloWorldApplication extends Application<HelloWorldApplicationConf
 
   private void registerHealthCheck(Environment environment, HelloWorldApplicationConfiguration configuration){
     environment.healthChecks().register("HelloWorldApplicationHealthCheck", new HelloWorldApplicationHealthCheck(configuration.getTemplate()));
+  }
+
+  private void manage(Environment environment, Injector injector, Class<? extends Managed> clazz){
+    Managed managed=injector.getInstance(clazz);
+    environment.lifecycle().manage(managed);
   }
   
 }
