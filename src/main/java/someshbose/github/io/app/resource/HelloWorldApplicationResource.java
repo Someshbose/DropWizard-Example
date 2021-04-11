@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import com.codahale.metrics.annotation.Timed;
-import someshbose.github.io.domain.Saying;
+import someshbose.github.io.domain.model.Saying;
 
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)

@@ -16,6 +16,7 @@ import io.dropwizard.hibernate.HibernateBundle;
 import someshbose.github.io.app.resource.HelloWorldApplicationResource;
 import someshbose.github.io.app.resource.PersonResource;
 import someshbose.github.io.app.service.SchedulerService;
+import someshbose.github.io.domain.model.Person;
 
 @Slf4j
 public class HelloWorldApplication extends Application<HelloWorldApplicationConfiguration> {

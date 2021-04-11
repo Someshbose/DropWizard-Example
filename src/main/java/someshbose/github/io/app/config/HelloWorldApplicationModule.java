@@ -6,7 +6,7 @@ import com.google.inject.Singleton;
 import io.dropwizard.hibernate.HibernateBundle;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
-import someshbose.github.io.app.controller.HelloWorldApplicationResource;
+import someshbose.github.io.app.resource.HelloWorldApplicationResource;
 import someshbose.github.io.app.service.Scheduled;
 import someshbose.github.io.app.service.SchedulerService;
 

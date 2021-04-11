@@ -4,7 +4,7 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.query.Query;
-import someshbose.github.io.domain.Person;
+import someshbose.github.io.domain.model.Person;
 
 import javax.inject.Inject;
 

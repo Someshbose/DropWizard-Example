@@ -3,6 +3,7 @@ package someshbose.github.io.domain.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 
 @Entity
 @Table(name = "Person")
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
                 name = "someshbose.github.io.model.Person.findAll",
                 query= "SELECT p FROM Person p")
 })
+@Builder
 public class Person {
 
     @Id
