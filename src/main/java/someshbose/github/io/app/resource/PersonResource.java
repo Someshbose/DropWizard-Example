@@ -1,4 +1,4 @@
-package someshbose.github.io.app.controller;
+package someshbose.github.io.app.resource;
 
 import java.util.List;
 import javax.inject.Inject;
@@ -13,8 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import io.dropwizard.hibernate.UnitOfWork;
-import someshbose.github.io.app.dao.PersonDao;
-import someshbose.github.io.model.Person;
+import someshbose.github.io.domain.dao.PersonDao;
+import someshbose.github.io.domain.model.Person;
 
 @Path("/person")
 @Consumes({MediaType.APPLICATION_JSON})

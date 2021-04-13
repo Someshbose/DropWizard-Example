@@ -9,14 +9,14 @@ import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 import someshbose.github.io.app.config.HelloWorldApplicationModule;
 import someshbose.github.io.app.config.HelloWorldApplicationConfiguration;
-import someshbose.github.io.app.controller.HelloWorldApplicationResource;
 import someshbose.github.io.app.health.HelloWorldApplicationHealthCheck;
 import io.dropwizard.db.DataSourceFactory;
 import io.dropwizard.migrations.MigrationsBundle;
 import io.dropwizard.hibernate.HibernateBundle;
-import someshbose.github.io.app.controller.PersonResource;
+import someshbose.github.io.app.resource.HelloWorldApplicationResource;
+import someshbose.github.io.app.resource.PersonResource;
 import someshbose.github.io.app.service.SchedulerService;
-import someshbose.github.io.model.Person;
+import someshbose.github.io.domain.model.Person;
 
 @Slf4j
 public class HelloWorldApplication extends Application<HelloWorldApplicationConfiguration> {
