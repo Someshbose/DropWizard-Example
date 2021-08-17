@@ -20,5 +20,5 @@ sh run.sh
 
 Go to this url in postman/ browser
 ```sh
-http://localhost:8080/hello-world
+http://localhost:8000/application/hello-world
 ```

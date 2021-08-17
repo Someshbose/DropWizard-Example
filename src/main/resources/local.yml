@@ -1,3 +1,11 @@
+server:
+  type: simple
+  applicationContextPath: /application
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8000
+
 template: Hello, %s!
 defaultName: Stranger
 
@@ -32,11 +40,3 @@ schedulerConfig:
 #   hibernate.show_sql: true
 #   hibernate.generate_statistics: false
 #   hibernate.hbm2ddl.auto: validate # validates schema when service is started
-
-#server:
-#type: simple
-#applicationContextPath: /application
-#adminContextPath: /admin
-#connector:
-#type: http
-#port: 8000
