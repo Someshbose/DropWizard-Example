@@ -1,5 +1,10 @@
 server:
-  type: default
+  type: simple
+  applicationContextPath: /application
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8000
 
 template: Hello, %s!
 defaultName: Stranger

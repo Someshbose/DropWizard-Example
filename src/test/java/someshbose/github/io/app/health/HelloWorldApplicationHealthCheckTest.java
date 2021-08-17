@@ -15,6 +15,6 @@ public class HelloWorldApplicationHealthCheckTest {
 
     @Test
     public void checkHealthTest() throws Exception {
-        Assertions.assertEquals(HealthCheck.Result.healthy(),healthCheck.check());
+        Assertions.assertEquals(HealthCheck.Result.healthy().isHealthy(),healthCheck.check().isHealthy());
     }
 }
